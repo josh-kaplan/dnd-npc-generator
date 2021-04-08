@@ -41,7 +41,7 @@ function importTable(tableName: string, r: (id: string) => any) {
 
 function ensureTablesAreInitialized() {
   if (!isInitialized) {
-    if (process.env.NODE_ENV === "test") {
+    //if (process.env.NODE_ENV === "test") {
       const fs = require("fs");
       const dir = path.join(__dirname, "./tables");
       const dirContent: string[] = fs.readdirSync(dir).filter((f: string) => f.endsWith(".json"));
@@ -50,13 +50,13 @@ function ensureTablesAreInitialized() {
         // eslint-disable-next-line
         importTable(table, t => require(path.join(dir, t)));
       }
-    } else {
+    /*} else {
       const r = require.context('./tables/', false, /\.json$/);
       initAvailableTables(r.keys());
       r.keys().forEach((key: string) => {
         importTable(key, r);
       });
-    }
+    }*/
   }
 }
 

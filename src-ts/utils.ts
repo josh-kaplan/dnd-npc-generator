@@ -1,20 +1,21 @@
 import { Group, Operator } from "./index";
 import {getTable} from "./tables";
 import * as s from "./staticAnalysis";
+
+
+/*--------------------( Globals )-------------------------------*/
+
 export const debugGen = process.env.NODE_ENV === "development";
+export const reGroup = /{((\\{|\\}|[^{}])*)}|((\\{|\\}|[^{}])+)/g;
 
-export function chooseRandomWithWeight<T>(arr: {
-  w: number;
-  v: T
-}[], totalWeight: number): T {
-  let rnum = ((Math.random() * totalWeight) + 1) | 0;
-  let i = 0;
-  while (rnum > 0) {
-    rnum -= arr[i++].w;
-  }
-  return arr[i - 1].v;
-}
 
+/*--------------------( Private Functions )---------------------*/
+
+
+/**
+ * @param  {string}
+ * @return {Group}
+ */
 function mapGroup(g: string): Group {
   //todo: replace escaped \{ and \}
   if (g[0] === "{") {
@@ -29,7 +30,98 @@ function mapGroup(g: string): Group {
   return g;
 }
 
-export const reGroup = /{((\\{|\\}|[^{}])*)}|((\\{|\\}|[^{}])+)/g;
+
+/**
+ * @param  {any}
+ * @return {n}
+ */
+function isNumber(n: any): n is number {
+  return typeof n === "number";
+}
+
+
+/*--------------------( Public Functions )----------------------*/
+
+
+/**
+ * @param {number}
+ */
+export function abilityWithMod(ability: number) {
+    let nModifier = (ability-10)%2;
+    let modifier = (nModifier >= 0) ? `+${nModifier}` : `${nModifier}`;
+    let spaces = (ability < 10) ? ' ' : '';
+    return `${spaces}${ability} (${modifier})`;
+}
+
+/**
+ * @param {any}
+ */
+export function cm2ft(cm: any) {
+    let _inches = 0.393701 * Number(cm);
+    let ft = Math.floor(_inches/12) 
+    let inch = Math.round(_inches % 12);
+    return `${ft}'${inch}"`;
+}
+
+
+/**
+ * @param {any}
+ */
+export function printNPC(npc: any) {
+    let pronoun = npc.description.pronounCapit;
+    let ft = cm2ft(npc.physical.height);
+
+    let color = '\u001b[36m'
+    let esc = '\u001b[0m'
+
+    console.log(`
+${color}Description${esc}
+${npc.description.name} is a ${npc.description.age} year old ${npc.description.gender} ${npc.description.race} ${npc.description.occupation}.
+${pronoun}has ${npc.physical.hair}${npc.physical.eyes}. 
+${pronoun}has ${npc.physical.skin} and ${npc.physical.face}.
+${pronoun}has ${npc.physical.build} and stands ${npc.physical.height}cm (${ft}) tall.
+${npc.physical.special1}  ${npc.physical.special2}
+
+${color}Personality and Background${esc}
+${npc.ptraits.traits1}
+${npc.ptraits.traits2}
+${npc.pquirks.description}
+${npc.hook.description}
+${npc.religion.description}
+
+${color}Alignment Tendencies${esc}
+Good, Neutral, Evil:      ${npc.alignment.good}, ${npc.alignment.moralneutral}, ${npc.alignment.evil}
+Lawful, Neutral, Chaotic: ${npc.alignment.lawful}, ${npc.alignment.ethicalneutral}, ${npc.alignment.chaotic}
+
+${color}Stats${esc}
+STR    ${abilityWithMod(npc.abilities.str)}        INT    ${abilityWithMod(npc.abilities.int)}
+DEX    ${abilityWithMod(npc.abilities.dex)}        WIS    ${abilityWithMod(npc.abilities.wis)}
+CON    ${abilityWithMod(npc.abilities.con)}        CHA    ${abilityWithMod(npc.abilities.cha)}
+`);
+}
+
+
+/**
+ * [w description]
+ * @type {number}
+ */
+export function chooseRandomWithWeight<T>(arr: {
+  w: number;
+  v: T
+}[], totalWeight: number): T {
+  let rnum = ((Math.random() * totalWeight) + 1) | 0;
+  let i = 0;
+  while (rnum > 0) {
+    rnum -= arr[i++].w;
+  }
+  return arr[i - 1].v;
+}
+
+
+/**
+ * @param  {string}
+ * @return {Group[]}
+ */
 export function getGroups(val: string): Group[] {
   if (typeof val !== "string" || val.length === 0) {
     throw new Error("Empty value to get group");
@@ -46,9 +138,9 @@ export function getGroups(val: string): Group[] {
   return r;
 }
 
-function isNumber(n: any): n is number {
-  return typeof n === "number";
-}
+
+/*--------------------( Interpreter ) --------------------------*/
+
 
 /*
 All supported operations

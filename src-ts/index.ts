@@ -33,7 +33,7 @@ export interface NpcGenerateOptions {
 export type SchemaElement = string | WeightedValue[];
 export type SchemaDescriptor = { [name: string]: SchemaElement | SchemaDescriptor };
 export type SchemaResult = {
-  [element: string]: SchemaResult | string;
+  [element: string]: SchemaResult | string | number;
 };
 export type DebugNode = { o?: string, childs: (DebugNode | string)[] }
 

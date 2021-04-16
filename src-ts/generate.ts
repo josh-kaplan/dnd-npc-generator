@@ -9,14 +9,15 @@ import {
   WeightedValue,
   Npc,
 } from "./index.js";
-import schema from "./schema.json";
+//import npcSchema from "./schemas/npc.json";
+//import monsterSchema from "./schemas/monster.json";
 import { getGroups, chooseRandomWithWeight, debugGen } from "./utils";
 
 function numberOrNull(v: any) {
   return typeof v === "number" ? v | 0 : null;
 }
 
-export function generate({
+export function generate(schema:string, {
   race,
   subrace,
   classorprof,
@@ -26,6 +27,9 @@ export function generate({
   plothook,
   gender,
 }: NpcGenerateOptions = {}) {
+
+  let selectedSchema =  require(`./schemas/${schema}.json`)
+  
   const options = {
     race: numberOrNull(race),
     subrace: numberOrNull(subrace),
@@ -41,6 +45,7 @@ export function generate({
   let debugNode: DebugNode = { o: "root", childs: [] };
   function processGroups(groups: Group[]) {
     let result = "";
+    let nResult:any = null;
     for (const instruction of groups) {
       if (typeof instruction === "string") {
         debugNode.childs.push(instruction);
@@ -53,10 +58,13 @@ export function generate({
           debugNode = node;
         }
         if (typeof instruction === "function") {
+
           const insRes = instruction(context, options);
           if (insRes !== undefined) {
             if (Array.isArray(insRes)) {
               result += String(processGroups(insRes));
+            } else if (typeof insRes === typeof 1) {
+              nResult = insRes
             } else {
               result += String(insRes);
             }
@@ -68,7 +76,9 @@ export function generate({
         debugNode = oldNode;
       }
     }
-    return result;
+
+    let ret:any = (nResult !== null) ? nResult : result; 
+    return ret;
   }
 
   function chooseFromArray(arr: WeightedValue[]): string {
@@ -96,10 +106,10 @@ export function generate({
   }
 
   // process inititalisation first, most of the selection is done here
-  processGroups(getGroups(schema.options.initialisation));
+  processGroups(getGroups(selectedSchema.options.initialisation));
 
   // Force to Npc type because we know schema.output matches the Npc type
-  const npc: Npc = processSchema(schema.output) as any;
+  const npc: Npc = processSchema(selectedSchema.output) as any;
   return { npc, debugNode };
 }
 

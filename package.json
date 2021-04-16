@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "npx ts-node ./src/main.ts",
-    "test": "mocha -r ./mocha-setup src/**/*.spec.ts"
+    "start": "npx ts-node ./src-ts/main.ts",
+    "test": "mocha -r ./mocha-setup src-ts/**/*.spec.ts"
   },
   "dependencies": {
+    "mongodb": "^3.6.6"
   },
   "devDependencies": {
     "@types/chai": "^4.2.14",

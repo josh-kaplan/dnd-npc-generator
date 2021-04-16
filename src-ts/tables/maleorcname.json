@@ -1,4 +1,5 @@
 [
+  { "w":1, "v":"{$name=Daku}"},
   { "w":1, "v":"{$name=Dalthu}"},
   { "w":1, "v":"{$name=Derthag}"},
   { "w":1, "v":"{$name=Eghuglat}"},
@@ -10,7 +11,9 @@
   { "w":1, "v":"{$name=Jorgagu}"},
   { "w":1, "v":"{$name=Jughragh}"},
   { "w":1, "v":"{$name=Kebub}"},
+  { "w":1, "v":"{$name=Krogat}"},
   { "w":1, "v":"{$name=Kurbag}"},
+  { "w":1, "v":"{$name=Logom}"},
   { "w":1, "v":"{$name=Maknok}"},
   { "w":1, "v":"{$name=Nofhug}"},
   { "w":1, "v":"{$name=Oakgu}"},
@@ -29,6 +32,8 @@
   { "w":1, "v":"{$name=Zog}"},
   { "w":1, "v":"{$name=Sogugh}"},
   { "w":1, "v":"{$name=Sugorim}"},
+  { "w":1, "v":"{$name=Thrum}"},
+  { "w":1, "v":"{$name=Thruzrak}"},
   { "w":1, "v":"{$name=Tozhug}"},
   { "w":1, "v":"{$name=Trugagh}"},
   { "w":1, "v":"{$name=Tulgan}"},
@@ -48,5 +53,6 @@
   { "w":1, "v":"{$name=Xuk}"},
   { "w":1, "v":"{$name=Yambagorn}"},
   { "w":1, "v":"{$name=Zarod}"},
+  { "w":1, "v":"{$name=Zerg}"},
   { "w":1, "v":"{$name=Zonagh}"}
 ]

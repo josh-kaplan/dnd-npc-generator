@@ -1,0 +1,10 @@
+{
+  "options": {
+    "initialisation": "{amonster}"
+  },
+  "output": {
+    "description": {
+      "name": "{$monster}"
+    }
+  }
+}

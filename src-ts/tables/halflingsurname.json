@@ -31,6 +31,7 @@
   { "w":1, "v":"{$name+ Mugwort}"},
   { "w":1, "v":"{$name+ Mynge}"},
   { "w":1, "v":"{$name+ Nete}"},
+  { "w":1, "v":"{$name+ Noakes}"},
   { "w":1, "v":"{$name+ Ophirn}"},
   { "w":1, "v":"{$name+ Rowich}"},
   { "w":1, "v":"{$name+ Tunnell}"},
@@ -48,5 +49,11 @@
   { "w":1, "v":"{$name+ Greenhill}"},
   { "w":1, "v":"{$name+ Headstrong}"},
   { "w":1, "v":"{$name+ Barrowes}"},
-  { "w":1, "v":"{$name+ Brandywood}"}
+  { "w":1, "v":"{$name+ Brandywood}"},
+  { "w":1, "v":"{$name+ Rumblebelly}"},
+  { "w":1, "v":"{$name+ Stoor}"},
+  { "w":1, "v":"{$name+ Longbottom}"},
+  { "w":1, "v":"{$name+ Townsend}"},
+  { "w":1, "v":"{$name+ Hairyfoot}"},
+  { "w":1, "v":"{$name+ Burrowes}"}
 ]

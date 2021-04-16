@@ -1,0 +1,4 @@
+[
+  { "w":1, "v":"{class}{$professionType=adventurer}"},
+  { "w":10, "v":"{profession}{$class=}{$professionType=profession}"}
+]

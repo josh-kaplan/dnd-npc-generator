@@ -48,5 +48,21 @@
   { "w":1, "v":"{$name+ Bronzehide}"},
   { "w":1, "v":"{$name+ Bloodgrip}"},
   { "w":1, "v":"{$name+ Bluntchin}"},
-  { "w":1, "v":"{$name+ Brightbeard}"}
+  { "w":1, "v":"{$name+ Brightbeard}"},
+  { "w":1, "v":"{$name+ Grumblebane}"},
+  { "w":1, "v":"{$name+ Warmaul}"},
+  { "w":1, "v":"{$name+ Flintbringer}"},
+  { "w":1, "v":"{$name+ Caskpike}"},
+  { "w":1, "v":"{$name+ Bronzearm}"},
+  { "w":1, "v":"{$name+ Granitebender}"},
+  { "w":1, "v":"{$name+ Berylborn}"},
+  { "w":1, "v":"{$name+ Frostsunder}"},
+  { "w":1, "v":"{$name+ Wyvernforged}"},
+  { "w":1, "v":"{$name+ Dragonjaw}"},
+  { "w":1, "v":"{$name+ Giantbane}"},
+  { "w":1, "v":"{$name+ Bonebreaker}"},
+  { "w":1, "v":"{$name+ Bluntchin}"},
+  { "w":1, "v":"{$name+ Emberstone}"},
+  { "w":1, "v":"{$name+ Blackheart}"},
+  { "w":1, "v":"{$name+ Metalmane}"}
 ]

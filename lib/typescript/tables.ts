@@ -1,6 +1,7 @@
 import { Option, WeightedValue } from "./index";
 import { getGroups } from "./utils";
 import path from "path";
+import {promisify} from 'util';
 
 
 
@@ -75,15 +76,28 @@ function importTable(tableName: string, r: (id: string) => any) {
 /**
  *
  */
-function ensureTablesAreInitialized() {
+async function ensureTablesAreInitialized() {
   if (!isInitialized) {
     const fs = require("fs");
+    const glob = require("glob");
     const dir = path.join(__dirname, "./tables");
-    const files = fs.readdirSync(dir).filter((f:string) => f.endsWith('.json'));
+    const files = fs.readdirSync(dir).filter((f:string) => f.endsWith('.json')); //[];
+    
+    /*const loadTables = (cwdwd) => {
+      fs.readdirSync(c).filter((f:string) => {
+        f.endsWith('.json')
+      });
+    }
+    loadTables(dir)
+
+    console.log(files)*/
+
     initAvailableTables(files);
     for (const table of files) {
       importTable(table, t => require(path.join(dir, t)));
     }
+
+    
   }
 }
 

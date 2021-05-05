@@ -16,6 +16,9 @@ def main():
     parser.add_argument('--race', nargs='+')
     parser.add_argument('--class', nargs='+')
     parser.add_argument('--profession-type', type=str)
+    parser.add_argument('--profession-category', type=str)
+    parser.add_argument('--location', type=str)
+    parser.add_argument('--gender', type=str)
     args = parser.parse_args()
     print(args)
 
@@ -23,7 +26,7 @@ def main():
 
     # Build the query
     query = {
-        'screened': {'$ne': False},
+        'used': {'$ne': True},
         '$and': []
     }
 
@@ -44,6 +47,21 @@ def main():
     # Add profession type to the query
     if args.profession_type is not None:
         expr = {'tags.professionType': str(args.profession_type)}
+        query['$and'].append(expr)
+    
+    # Add profession type to the query
+    if args.profession_category is not None:
+        expr = {'tags.professionCategory': str(args.profession_category)}
+        query['$and'].append(expr)
+    
+    # Add location to the query
+    if args.location is not None:
+        expr = {'description.location': str(args.location)}
+        query['$and'].append(expr)
+
+    # Add gender to the query
+    if args.gender is not None:
+        expr = {'description.gender': str(args.gender)}
         query['$and'].append(expr)
 
     # Cleanup query
@@ -67,7 +85,7 @@ def main():
         use = input('Mark NPC as used? (y/n) ')
         if use == 'y':
             newvals = {}
-            newvals['screened'] = True
+            newvals['used'] = True
 
             notes = input('Usage Notes: ')
             newvals['notes'] = notes

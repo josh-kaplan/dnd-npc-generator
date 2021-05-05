@@ -65,7 +65,8 @@
     "tags": {
       "used": false,
       "screened": false,
-      "professionType": "{$professionType}"
+      "professionType": "{$professionType}",
+      "professionCategory": "{$professionCategory}"
     }
   }
 }

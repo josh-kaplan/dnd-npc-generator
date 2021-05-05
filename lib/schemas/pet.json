@@ -1,0 +1,11 @@
+{
+    "options": {
+      "init": "{pet}"
+    },
+    "output": {
+      "description": {
+        "name": "{$pet}"
+      }
+    }
+  }
+  
